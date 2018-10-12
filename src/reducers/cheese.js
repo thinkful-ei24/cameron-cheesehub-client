@@ -1,11 +1,14 @@
 import {FETCH_CHEESES_SUCCESS,
   FETCH_CHEESES_REQUEST,
-  FETCH_CHEESES_ERROR} from '../actions/cheese';
+  FETCH_CHEESES_ERROR,
+  ADD_CHEESE,
+  CLEAR_ADD_CHEESE} from '../actions/cheese';
 
 const initialState = {
   loading: false,
   cheeses: [],
-  error: null
+  error: null,
+  cheeseToAdd: ''
 }  
 
 export default function(state = initialState, action) {
@@ -22,7 +25,11 @@ export default function(state = initialState, action) {
       return Object.assign({}, state, {
         loading: false,
         error: action.error
-      });    
+      }); 
+    case ADD_CHEESE:
+      return Object.assign({}, state, {cheeseToAdd: action.cheese});     
+    case CLEAR_ADD_CHEESE:
+      return Object.assign({}, state, {cheeseToAdd: ''});  
     default: 
       return state 
   } 

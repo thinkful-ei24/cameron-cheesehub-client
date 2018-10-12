@@ -4,12 +4,13 @@ import {Provider} from 'react-redux';
 import './index.css';
 
 import * as serviceWorker from './serviceWorker';
-import CheeseList from './components/cheese-list';
+import App from './App';
 import store from './store';
+
 
 ReactDOM.render(
   <Provider store={store} >
-    <CheeseList />
+    <App />
   </Provider>,
    document.getElementById('root'));
 

@@ -24,6 +24,21 @@ export const fetchCheesesError = (error) => {
   });
 };
 
+export const ADD_CHEESE = 'ADD_CHEESE';
+export const addCheese = (cheese) => {
+  return ({
+    type: ADD_CHEESE,
+    cheese
+  });
+};
+
+export const CLEAR_ADD_CHEESE = 'CLEAR_ADD_CHEESE';
+export const clearAddCheese = () => {
+  return ({
+    type: CLEAR_ADD_CHEESE
+  });
+};
+
 export const fetchCheeses = () => (dispatch) => {
   dispatch(fetchCheesesRequest());
   fetch(`${API_BASE_URL}/api/cheeses`)
@@ -32,4 +47,19 @@ export const fetchCheeses = () => (dispatch) => {
   .then(res => dispatch(fetchCheesesSuccess(res)))
   .catch(err => dispatch(fetchCheesesError(err)));
 
+}
+
+export const postCheese = (cheese) => (dispatch) => {
+  dispatch(fetchCheesesRequest());
+  fetch(`${API_BASE_URL}/api/cheeses`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({cheese})
+  }).then(res => normalizeResponseErrors(res))
+  .then(() => {
+    dispatch(clearAddCheese());
+    dispatch(fetchCheeses());})
+  .catch(err => dispatch(fetchCheesesError(err)));
 }
