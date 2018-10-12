@@ -1,4 +1,4 @@
-import {API_BASE_URL} from '../../config';
+import {API_BASE_URL} from '../config';
 import {normalizeResponseErrors} from './utils';
 
 export const FETCH_CHEESES_REQUEST = 'FETCH_CHEESES_REQUEST';
